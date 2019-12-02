@@ -18,7 +18,7 @@ namespace BlankProject.Scripts.Config
 
             var template = new EntityTemplate();
             template.AddComponent(new Position.Snapshot(), clientAttribute);
-            template.AddComponent(new Inventory.Snapshot(inv, 24, 1), clientAttribute);
+            template.AddComponent(new Inventory.Snapshot(inv, 10, 1), serverAttribute);
             template.AddComponent(new Metadata.Snapshot("Player"), serverAttribute);
 
             PlayerLifecycleHelper.AddPlayerLifecycleComponents(template, workerId, serverAttribute);
