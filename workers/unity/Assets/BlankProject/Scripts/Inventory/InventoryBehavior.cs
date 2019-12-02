@@ -58,6 +58,24 @@ public class InventoryBehavior : MonoBehaviour
 
         }
 
+        if (GUILayout.Button("Remove Item + Integer Update"))
+        {
+            var inv = _inventoryWriter.Data.Slots;
+
+            for (int cnt = 0; cnt < _inventoryWriter.Data.MaxSlots; cnt++)
+            {
+                if (inv.ContainsKey(cnt))
+                {
+                    inv.Remove(cnt);
+                    break;
+                }
+            }
+
+            _inventoryWriter.SendUpdate(new Inventory.Update() { Slots = inv, ContainerId = _inventoryWriter.Data.ContainerId + 1, });
+
+
+        }
+
         GUILayout.EndArea();
 
 
