@@ -1,0 +1,56 @@
+package improbable.item;
+import "improbable/item/item_data.schema";
+
+
+type AddItemRequest {
+  // current health of the ship
+  int32 intented_slot = 1;
+  //int32 item_id = 2;
+  //int32 value = 3;
+  //string crafter_name = 4;
+  //int32 stack = 5;
+  ItemData item = 2;
+}
+
+type SlotRemove {
+  int32 intented_slot = 1;
+  int32 stack = 2;
+}
+
+type RemoveItemRequest {
+  // current health of the ship
+  list<SlotRemove> items = 1;
+}
+
+type DroppedItemRequest {
+  int32 slot = 1;
+   //ItemData item = 2;
+}
+
+type ActionItemRequest {
+  int32 slot = 1;
+   //ItemData item = 2;
+}
+
+type ItemActionResponse {
+  bool success = 1;
+  string message =2;
+}
+
+component Inventory {
+  
+
+  id = 1021;
+  map<int32, ItemData> slots = 1;
+  int32 max_slots = 2;
+  int64 container_id = 3;
+
+
+  command ItemActionResponse add_item(AddItemRequest);
+  command ItemActionResponse drop_item(DroppedItemRequest);
+  command ItemActionResponse action_item(ActionItemRequest);
+  command ItemActionResponse uneqiup_item(ActionItemRequest);
+  command ItemActionResponse remove_items(RemoveItemRequest);
+
+}
+

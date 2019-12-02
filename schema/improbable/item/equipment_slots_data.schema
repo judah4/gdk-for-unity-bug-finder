@@ -1,0 +1,43 @@
+package improbable.item;
+import "improbable/item/item_data.schema";
+
+
+enum EquipmentSlotId {
+  Armor = 0;
+  RHand = 1;
+  Helmet = 2;
+  Neck = 3;
+  
+  LHand = 5;
+  RHandAlt = 6;
+  LHandAlt = 7;
+  Gloves = 8;
+  Shoes = 9;
+  Back = 10;
+  RingR = 11;
+  RingL = 12;
+  Face = 13;
+
+  Earring = 14;
+}
+
+type ActionEquipRequest {
+  int32 slot = 1;
+}
+
+type EquipActionResponse {
+  bool success = 1;
+  string message =2;
+}
+
+component EquipmentSlots {
+  
+
+  id = 1016;
+  map<int32, ItemData> equipment = 1;
+  int64 container_id = 2;
+
+  command EquipActionResponse action_equip(ActionEquipRequest);
+
+}
+
